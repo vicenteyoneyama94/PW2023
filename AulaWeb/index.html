@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Meu Primeiro HTML</title>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Free Web tutorials">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="John Doe">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+
+    <h1>Calculadora de IMC</h1>
+    <div class="formulario">
+        <div class="container">
+            <div class="box">
+                <label>Altura</label>
+                <input placeholder="Insira a Altura" type="number" id="altura" />
+            </div>
+            <div class="box">
+                <label>Peso</label>
+                <input placeholder="Insira o Peso" type="number" id="peso" />
+            </div>
+        </div>
+        <button onclick="calcular()" id="botao">Calcular</button>
+
+        <div id="resultado"></div>
+
+        <button onclick="mudarEstado('dadosFormulario')" id="botao">Mostrar</button>
+    </div>
+
+    <div class="formulario" style="display: none;" id="dadosFormulario">
+        Altura: <span id="dadosAltura"></span>
+        Peso: <span id="dadosPeso"></span>
+    </div>
+
+    <script type="text/javascript" src="index.js">
+    </script>
+</body>
+
+</html>

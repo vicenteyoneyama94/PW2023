@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>Meu Primeiro HTML</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Calculo de IMC">
+    <meta name="keywords" content="IMC">
+    <meta name="author" content="Frank Willian">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <h1>Calculadora de IMC</h1>
+    <div class="formulario">
+        <div class="container">
+            <div class="box">
+                <label>Altura</label>
+                <input onkeyup="calculoDinamico()" placeholder="Insira a Altura" type="number" id="altura" />
+            </div>
+            <div class="box">
+                <label>Peso</label>
+                <input onkeyup="calculoDinamico()" placeholder="Insira o Peso" type="number" id="peso" />
+            </div>
+        </div>
+        <button onclick="calcular()" id="botao">Calcular</button>
+
+        <div id="resultado"></div>
+
+        <button onclick="mudarEstado('dadosFormulario')" id="botaoMostrar">Mostrar</button>
+    </div>
+    <button id="botaoImprimir" onclick="printDiv('dadosFormulario')">Imprimir</button>
+    <div class="formulario" style="display: none;" id="dadosFormulario">
+        Altura: <span id="dadosAltura"></span>
+        Peso: <span id="dadosPeso"></span>
+    </div>
+
+    <script type="text/javascript" src="index.js">
+    </script>
+</body>
+
+</html>
