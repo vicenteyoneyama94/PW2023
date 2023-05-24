@@ -23,16 +23,16 @@ public class Pessoa {
     private int id;
 
     private String nome;
-    @ManyToOne
-    @JoinColumn(name = "idPessoa")
     private String cpf;
     private String email;
     private String senha;
     private String endereco;
     private String cep;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cidade")
     private Cidade cidade;
-    private Estado estado;
+    
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
