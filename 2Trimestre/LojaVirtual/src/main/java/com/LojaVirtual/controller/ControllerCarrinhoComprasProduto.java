@@ -3,8 +3,6 @@ package com.LojaVirtual.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import jakarta.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,39 +15,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.LojaVirtual.entity.Cidade;
+import com.LojaVirtual.entity.CarrinhoComprasProduto;
+import com.LojaVirtual.service.CarrinhoComprasProdutoService;
 
-import com.LojaVirtual.service.CidadeService;
-
-
+import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api/cidade")
+@RequestMapping("/api/carrinhocomprasproduto")
 @CrossOrigin
-public class ControllerCidade {
+public class ControllerCarrinhoComprasProduto {
     
     @Autowired
-    private CidadeService cidadeService;
+    private CarrinhoComprasProdutoService carrinhoCompraProdutoService;
 
     @GetMapping("/")
-    public List<Cidade> buscarTodos(){
-        return cidadeService.buscarTodos();
+    public List<CarrinhoComprasProduto> buscarTodos(){
+        return carrinhoCompraProdutoService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Cidade inserir(@RequestBody Cidade cidade){
-        return cidadeService.inserir(cidade);
+    public CarrinhoComprasProduto inserir(@RequestBody CarrinhoComprasProduto carrinhoCompraProduto){
+        return carrinhoCompraProdutoService.inserir(carrinhoCompraProduto);
     }
 
     @PutMapping("/")
-    public Cidade alterar(Cidade cidade){
-        return cidadeService.alterar(cidade);
+    public CarrinhoComprasProduto alterar(CarrinhoComprasProduto carrinhoCompraProduto){
+        return carrinhoCompraProdutoService.alterar(carrinhoCompraProduto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluir(@PathParam("id")Long id){
         try{
-        cidadeService.excluir(id);
+        carrinhoCompraProdutoService.excluir(id);
         return ResponseEntity.ok().build();
         }catch(NoSuchElementException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

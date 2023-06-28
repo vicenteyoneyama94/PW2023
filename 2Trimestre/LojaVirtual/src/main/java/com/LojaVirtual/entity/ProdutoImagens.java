@@ -14,42 +14,21 @@ import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Entity
-@Table(name = "pessoa")
+@Table(name = "produto_imagens")
 @Data
-public class Pessoa {
-    
+public class ProdutoImagens {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     private String nome;
-    private String cpf;
-    private String email;
-    private String senha;
-    private String endereco;
-    private String cep;
 
     @ManyToOne
-    @JoinColumn(name = "idPermissao")
-    private Permissao permissao;
-
-    @ManyToOne
-    @JoinColumn(name = "idPermissaopessoa")
-    private PermissaoPessoa permissaoPessoa;
-
-    @ManyToOne
-    @JoinColumn(name = "idCidade")
-    private Cidade cidade;
-    
-    @ManyToOne
-    @JoinColumn(name = "idCarrinho_compra")
-    private CarrinhoCompra carrinhoCompra;
-
-
+    @JoinColumn(name = "idProduto")
+    private Produto produto;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
-    
-
 }

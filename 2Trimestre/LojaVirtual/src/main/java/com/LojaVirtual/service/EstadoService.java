@@ -15,8 +15,6 @@ public class EstadoService {
     
     @Autowired
     private EstadoRepository estadoRepository;
-
-    
     
     public List<Estado> buscarTodos(){
         return estadoRepository.findAll();

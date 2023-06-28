@@ -1,12 +1,8 @@
 package com.LojaVirtual.controller;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-
-import jakarta.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,41 +11,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.LojaVirtual.entity.Cidade;
+import com.LojaVirtual.entity.ProdutoImagens;
+import com.LojaVirtual.service.ProdutoImagensService;
 
-import com.LojaVirtual.service.CidadeService;
-
-
+import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api/cidade")
+@RequestMapping("/api/produtoimagens")
 @CrossOrigin
-public class ControllerCidade {
+public class ControllerProdutoImagens {
     
     @Autowired
-    private CidadeService cidadeService;
+    private ProdutoImagensService produtoImagensService;
 
-    @GetMapping("/")
-    public List<Cidade> buscarTodos(){
-        return cidadeService.buscarTodos();
+    @GetMapping("/produto/{id}")
+    public List<ProdutoImagens> buscarTodos(){
+        return produtoImagensService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Cidade inserir(@RequestBody Cidade cidade){
-        return cidadeService.inserir(cidade);
+    public ProdutoImagens inserir(@RequestParam("idProduto") Long idProduto @RequestParam("file") MultipartFile file){
+        return produtoImagensService.inserir(idProduto, produtoImagens);
     }
 
     @PutMapping("/")
-    public Cidade alterar(Cidade cidade){
-        return cidadeService.alterar(cidade);
+    public ProdutoImagens alterar(ProdutoImagens produtoImagens){
+        return produtoImagensService.alterar(produtoImagens);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluir(@PathParam("id")Long id){
         try{
-        cidadeService.excluir(id);
+        produtoImagensService.excluir(id);
         return ResponseEntity.ok().build();
         }catch(NoSuchElementException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

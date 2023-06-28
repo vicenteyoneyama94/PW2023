@@ -13,42 +13,42 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.LojaVirtual.entity.Estado;
 import com.LojaVirtual.service.EstadoService;
 
-
 @RestController
 @RequestMapping("/api/estado")
 @CrossOrigin
 public class ControllerEstado {
-    
+
     @Autowired
     private EstadoService estadoService;
 
-    @GetMapping("/{id}")
-    public List<Estado> buscarTodos(){
-        return estadoService.buscarTodos();
-    }
-
     @PostMapping("/")
-    public Estado inserir(Estado estado){
+    public Estado inserir(@RequestBody Estado estado) {
         return estadoService.inserir(estado);
     }
 
+    @GetMapping("/")
+    public List<Estado> buscarTodos() {
+        return estadoService.buscarTodos();
+    }
+
     @PutMapping("/")
-    public Estado alterar(Estado estado){
+    public Estado alterar(@RequestBody Estado estado) {
         return estadoService.alterar(estado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluir(@PathParam("id")Long id){
-        try{
-        estadoService.excluir(id);
-        return ResponseEntity.ok().build();
-        }catch(NoSuchElementException e){
+    public ResponseEntity<Object> excluir(@PathParam("id") Long id) {
+        try {
+            estadoService.excluir(id);
+            return ResponseEntity.ok().build();
+        } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

@@ -1,0 +1,1 @@
+INSERT INTO `estado` (`id`, `nome`, `sigla`) VALUES (1, 'PARANÁ', 'PR');

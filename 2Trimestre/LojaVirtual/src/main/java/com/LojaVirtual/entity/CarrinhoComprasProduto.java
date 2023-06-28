@@ -6,26 +6,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
-import jakarta.persistence.Table;
 import lombok.Data;
 
 
 @Entity
-@Table(name = "estado")
+@Table(name = "carrinho_compras_produto")
 @Data
-public class Estado {
-
+public class CarrinhoComprasProduto {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     
-    private String nome;
-    private String sigla;
+    private Double valor;
+    private String observacao;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
+
 }

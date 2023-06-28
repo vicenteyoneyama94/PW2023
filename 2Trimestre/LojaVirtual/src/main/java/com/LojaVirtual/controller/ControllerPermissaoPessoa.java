@@ -3,8 +3,6 @@ package com.LojaVirtual.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import jakarta.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,39 +15,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.LojaVirtual.entity.Cidade;
+import com.LojaVirtual.entity.PermissaoPessoa;
+import com.LojaVirtual.service.PermissaoPessoaService;
 
-import com.LojaVirtual.service.CidadeService;
-
-
+import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api/cidade")
+@RequestMapping("/api/permissaopessoa")
 @CrossOrigin
-public class ControllerCidade {
+public class ControllerPermissaoPessoa {
     
     @Autowired
-    private CidadeService cidadeService;
+    private PermissaoPessoaService permissaoPessoaService;
 
     @GetMapping("/")
-    public List<Cidade> buscarTodos(){
-        return cidadeService.buscarTodos();
+    public List<PermissaoPessoa> buscarTodos(){
+        return permissaoPessoaService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Cidade inserir(@RequestBody Cidade cidade){
-        return cidadeService.inserir(cidade);
+    public PermissaoPessoa inserir(@RequestBody PermissaoPessoa permissaoPessoa){
+        return permissaoPessoaService.inserir(permissaoPessoa);
     }
 
     @PutMapping("/")
-    public Cidade alterar(Cidade cidade){
-        return cidadeService.alterar(cidade);
+    public PermissaoPessoa alterar(PermissaoPessoa permissaoPessoa){
+        return permissaoPessoaService.alterar(permissaoPessoa);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluir(@PathParam("id")Long id){
         try{
-        cidadeService.excluir(id);
+        permissaoPessoaService.excluir(id);
         return ResponseEntity.ok().build();
         }catch(NoSuchElementException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
